@@ -6,7 +6,11 @@ import {
   chartBoxRevenue,
   chartBoxConversion,
   chartBoxProduct,
+  barChartBoxRevenue,
+  barChartBoxVisit,
 } from "../../data.ts";
+import BarChartBox from "../../components/barChartBox/BarChartBox.tsx";
+import PieChartBox from "../../components/pieChart/PieChartBox.tsx";
 
 const Home = () => {
   return (
@@ -20,16 +24,22 @@ const Home = () => {
       <div className="box box-3">
         <ChartBox {...chartBoxRevenue} />
       </div>
-      <div className="box box-4">box4</div>
+      <div className="box box-4">
+        <PieChartBox />
+      </div>
       <div className="box box-5">
         <ChartBox {...chartBoxProduct} />
       </div>
       <div className="box box-6">
         <ChartBox {...chartBoxConversion} />
       </div>
-      <div className="box box-7">box7</div>
-      <div className="box box-8">box8</div>
-      <div className="box box-9">box9</div>
+      <div className="box box-7">box-7</div>
+      <div className="box box-8">
+        <BarChartBox {...barChartBoxVisit} />
+      </div>
+      <div className="box box-9">
+        <BarChartBox {...barChartBoxRevenue} />
+      </div>
     </div>
   );
 };
