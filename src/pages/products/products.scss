@@ -1,0 +1,17 @@
+.products {
+  .info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    button {
+      padding: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: rgb(192, 242, 243);
+    }
+  }
+}

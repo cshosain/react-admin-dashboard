@@ -11,6 +11,7 @@ import {
 } from "../../data.ts";
 import BarChartBox from "../../components/barChartBox/BarChartBox.tsx";
 import PieChartBox from "../../components/pieChart/PieChartBox.tsx";
+import BigChartBox from "../../components/bigChartBox/BigChartBox.tsx";
 
 const Home = () => {
   return (
@@ -33,7 +34,9 @@ const Home = () => {
       <div className="box box-6">
         <ChartBox {...chartBoxConversion} />
       </div>
-      <div className="box box-7">box-7</div>
+      <div className="box box-7">
+        <BigChartBox />
+      </div>
       <div className="box box-8">
         <BarChartBox {...barChartBoxVisit} />
       </div>

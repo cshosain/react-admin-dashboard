@@ -14,6 +14,10 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
+import Product from "./pages/product/Product";
+import User from "./pages/user/User";
+import Posts from "./pages/posts/Posts";
+import Orders from "./pages/orders/Orders";
 
 function App() {
   const Layout = () => {
@@ -47,8 +51,24 @@ function App() {
           element: <Products />,
         },
         {
+          path: "/products/:id",
+          element: <Product />,
+        },
+        {
           path: "/users",
           element: <Users />,
+        },
+        {
+          path: "/users/:id",
+          element: <User />,
+        },
+        {
+          path: "/posts",
+          element: <Posts />,
+        },
+        {
+          path: "/orders",
+          element: <Orders />,
         },
       ],
     },
