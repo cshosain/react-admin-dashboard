@@ -2,8 +2,9 @@ import { GridColDef } from "@mui/x-data-grid";
 import DataTable from "../../components/dataTable/DataTable";
 import "./user.scss";
 import { userRows } from "../../data";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Add from "../../components/add/Add";
+import { ThemeContext } from "../../utilities/context";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 90, type: "number" },
@@ -82,11 +83,19 @@ const columns: GridColDef[] = [
 
 const Users = () => {
   const [open, setOpen] = useState(false);
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className="users">
       <div className="info">
         <h1>Users</h1>
-        <button type="button" onClick={() => setOpen(true)}>
+        <button
+          className={
+            theme === "light" ? "new-user-btn-light" : "new-user-btn-dark"
+          }
+          type="button"
+          onClick={() => setOpen(true)}
+        >
           Add New User
         </button>
       </div>

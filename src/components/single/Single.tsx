@@ -8,6 +8,8 @@ import {
   Line,
 } from "recharts";
 import "./single.scss";
+import { useContext } from "react";
+import { ThemeContext } from "../../utilities/context";
 
 type Props = {
   id: number;
@@ -22,6 +24,20 @@ type Props = {
 };
 
 const Single = (props: Props) => {
+  const { theme } = useContext(ThemeContext);
+
+  // const updateBtnStyle = {
+  //   backgroundColor: "",
+  //   color: "",
+  // };
+  // if (theme === "light") {
+  //   (updateBtnStyle.backgroundColor = "#123456"),
+  //     (updateBtnStyle.color = "white");
+  // } else {
+  //   (updateBtnStyle.backgroundColor = "white"),
+  //     (updateBtnStyle.color = "#123456");
+  // }
+
   return (
     <div className="single">
       <div className="view">
@@ -29,7 +45,13 @@ const Single = (props: Props) => {
           <div className="topInfo">
             {props.img && <img src={props.img} alt="" />}
             <h1>{props.title}</h1>
-            <button>Update</button>
+            <button
+              className={
+                theme === "light" ? "update-btn-light" : "update-btn-dark"
+              }
+            >
+              Update
+            </button>
           </div>
           <div className="details">
             {Object.entries(props.info).map((item) => (
@@ -64,7 +86,13 @@ const Single = (props: Props) => {
                     key={dataKey.name}
                     type="monotone"
                     dataKey={dataKey.name}
-                    stroke={dataKey.color}
+                    stroke={
+                      theme === "dark"
+                        ? dataKey.color
+                        : dataKey.name === "visits"
+                        ? "#002c58"
+                        : "#00b31b"
+                    }
                   />
                 ))}
               </LineChart>
@@ -78,7 +106,14 @@ const Single = (props: Props) => {
           <ul>
             {props.activities.map((activity) => (
               <li key={activity.text}>
-                <div>
+                <div
+                  style={{
+                    backgroundColor:
+                      theme === "light"
+                        ? "rgba(244, 91, 104, 0.15)"
+                        : "#f45b6810",
+                  }}
+                >
                   <p>{activity.text}</p>
                   <time>{activity.time}</time>
                 </div>

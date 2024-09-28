@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "./chartBox.scss";
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
+import { useContext } from "react";
+import { ThemeContext } from "../../utilities/context";
 
 type Props = {
   icon: string;
@@ -13,6 +15,7 @@ type Props = {
 };
 
 const ChartBox = (props: Props) => {
+  const { theme } = useContext(ThemeContext);
   return (
     <div className="chartBox">
       <div className="boxInfo">
@@ -21,7 +24,10 @@ const ChartBox = (props: Props) => {
           <span>{props.title}</span>
         </div>
         <h1>{props.number}</h1>
-        <Link to="/" style={{ color: props.color }}>
+        <Link
+          to="/"
+          style={{ color: theme === "light" ? "limegreen" : props.color }}
+        >
           View all
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import { GridColDef } from "@mui/x-data-grid";
 import "./add.scss";
-import { FormEvent, FormEventHandler } from "react";
+import { FormEvent, FormEventHandler, useContext } from "react";
+import { ThemeContext } from "../../utilities/context";
 
 type Props = {
   slug: string;
@@ -8,6 +9,8 @@ type Props = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const Add = (props: Props) => {
+  const { theme } = useContext(ThemeContext);
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     // Extract the FormEvent
     const formEvent = event as FormEvent<HTMLFormElement>;
@@ -20,7 +23,7 @@ const Add = (props: Props) => {
 
   return (
     <div className="add">
-      <div className="modal">
+      <div className={theme === "light" ? "modal modal-light" : "modal"}>
         <h1>Add New</h1>
         <span className="close" onClick={() => props.setOpen(false)}>
           X

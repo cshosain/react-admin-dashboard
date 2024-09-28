@@ -13,7 +13,7 @@
     .title {
       font-size: 12px;
       font-weight: 200;
-      color: $soft-color;
+      // color: $soft-color;
       text-transform: uppercase;
       @include lg {
         display: none;
@@ -27,7 +27,8 @@
       border-radius: 5px;
 
       &:hover {
-        background-color: $soft-bg;
+        background-color: #5b7088;
+        color: white;
       }
       .listItemTitle {
         @include lg {

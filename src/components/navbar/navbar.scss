@@ -18,6 +18,12 @@
     align-items: center;
     gap: 20px;
 
+    .dark-mode-switch {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .icon {
       @include sm {
         display: none;

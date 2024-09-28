@@ -10,8 +10,17 @@
       border: none;
       border-radius: 5px;
     }
+    .new-product-btn-light {
+      background-color: #123456;
+      color: #ffffff;
+    }
+    .new-product-btn-dark {
+      background-color: #ffffff;
+      color: #123456;
+    }
     button:hover {
-      background-color: rgb(192, 242, 243);
+      background-color: #ff7948;
+      color: white;
     }
   }
 }

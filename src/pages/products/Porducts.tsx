@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
 import { products } from "../../data";
 import "./products.scss";
+import { ThemeContext } from "../../utilities/context";
 
 const Products = () => {
   const [open, setOpen] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 90 },
@@ -60,7 +62,13 @@ const Products = () => {
     <div className="products">
       <div className="info">
         <h1>Products</h1>
-        <button type="button" onClick={() => setOpen(true)}>
+        <button
+          className={
+            theme === "light" ? "new-product-btn-light" : "new-product-btn-dark"
+          }
+          type="button"
+          onClick={() => setOpen(true)}
+        >
           Add New product
         </button>
       </div>

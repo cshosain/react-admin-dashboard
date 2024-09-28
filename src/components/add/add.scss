@@ -13,7 +13,13 @@
   .modal {
     padding: 50px;
     border-radius: 10px;
-    background-color: $main-bg;
+    background: linear-gradient(
+      110.6deg,
+      rgb(156, 116, 129) -18.3%,
+      rgb(67, 54, 74) 16.4%,
+      rgb(47, 48, 67) 68.2%,
+      rgb(27, 23, 36) 99.1%
+    );
     position: relative;
     h1 {
       margin-bottom: 40px;
@@ -54,7 +60,40 @@
         width: 100%;
         padding: 10px;
         cursor: pointer;
+        border: none;
       }
+      button:hover {
+        background-color: rgb(0, 102, 255);
+        color: #ffffff;
+      }
+    }
+  }
+  .modal-light {
+    background: linear-gradient(
+      99.6deg,
+      rgb(209, 227, 255) 10.6%,
+      rgb(242, 227, 234) 32.9%,
+      rgb(234, 202, 213) 52.7%,
+      rgb(220, 227, 239) 72.8%,
+      rgb(185, 205, 227) 81.1%,
+      rgb(154, 180, 212) 102.4%
+    );
+    form {
+      input {
+        color: black;
+        border: 1px solid rgba(0, 0, 0, 0.775);
+      }
+      button {
+        background-color: #103456;
+        color: white;
+      }
+      button:hover {
+        background-color: orangered;
+      }
+    }
+
+    h1 {
+      color: #103456;
     }
   }
 }

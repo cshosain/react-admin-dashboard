@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import "./bigChartBox.scss";
 import {
   Area,
@@ -7,6 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { ThemeContext } from "../../utilities/context";
 
 const data = [
   {
@@ -54,6 +56,7 @@ const data = [
 ];
 
 const BigChartBox = () => {
+  const { theme } = useContext(ThemeContext);
   return (
     <div className="bigChartBox">
       <h1>Revenue Analytics</h1>
@@ -75,22 +78,22 @@ const BigChartBox = () => {
               type="monotone"
               dataKey="books"
               stackId="1"
-              stroke="#8884d8"
-              fill="#8884d8"
+              stroke={theme !== "light" ? "#ffffff" : "#92003d"}
+              fill={theme !== "light" ? "#0088fe" : "#92003d"}
             />
             <Area
               type="monotone"
               dataKey="clothes"
               stackId="1"
-              stroke="#82ca9d"
-              fill="#82ca9d"
+              stroke={theme !== "light" ? "#ffffff" : "#000000"}
+              fill={theme !== "light" ? "#00ff62" : "#000000"}
             />
             <Area
               type="monotone"
               dataKey="electronic"
               stackId="1"
-              stroke="#ffc658"
-              fill="#ffc658"
+              stroke={theme !== "light" ? "#ffffff" : "#a36d00"}
+              fill={theme !== "light" ? "#ffbb28" : "#00bc23"}
             />
           </AreaChart>
         </ResponsiveContainer>
