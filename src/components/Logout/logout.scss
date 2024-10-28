@@ -1,0 +1,36 @@
+.logout {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 20vh;
+  width: 20vw;
+  // border: 1px solid gray;
+  position: absolute;
+  top: 4%;
+  right: 2vw;
+  z-index: 10;
+  .internal {
+    height: 79px;
+    border-radius: 5px;
+    width: 148px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-color: rgba(67, 54, 74, 0.463);
+
+    border: 1px solid gray;
+
+    button {
+      padding: 8px;
+      cursor: pointer;
+      color: white;
+      background-color: rgb(46, 105, 181);
+      width: 60px;
+      border-radius: 5px;
+      border: none;
+    }
+    button:hover {
+      background-color: rgb(33, 73, 126);
+    }
+  }
+}

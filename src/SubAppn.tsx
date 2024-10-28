@@ -13,6 +13,7 @@ import {
   Route,
   Link,
   Outlet,
+  Navigate,
 } from "react-router-dom";
 import Product from "./pages/product/Product";
 import User from "./pages/user/User";
@@ -20,6 +21,7 @@ import Posts from "./pages/posts/Posts";
 import Orders from "./pages/orders/Orders";
 import { ThemeContext } from "./utilities/context";
 import { useContext } from "react";
+import Signup from "./pages/signup/Signup";
 
 function SubAppn() {
   const { theme } = useContext(ThemeContext);
@@ -53,10 +55,19 @@ function SubAppn() {
     );
   };
 
+  const PrivateRoute: React.FC = () => {
+    const token = localStorage.getItem("jsonwebtoken");
+
+    if (!token) {
+      return <Navigate to="/login" />;
+    }
+
+    return <Layout />;
+  };
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: <PrivateRoute />,
       children: [
         {
           path: "/",
@@ -91,6 +102,10 @@ function SubAppn() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
     },
   ]);
 

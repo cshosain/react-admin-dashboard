@@ -1,0 +1,141 @@
+// signup.scss
+
+// Variables for colors and spacing
+$primary-color: #4a90e2;
+$secondary-color: #ffffff;
+$background-color: #f4f6f8;
+$input-background: #ffffff;
+$input-border: #dcdfe6;
+$button-hover: darken($primary-color, 10%);
+$font-color: #333;
+$border-radius: 6px;
+$padding: 10px 20px;
+$max-width: 400px;
+
+// Container styles
+.signup-container {
+  font-family: sans-serif;
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+
+  h2 {
+    color: $primary-color;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// Form styles
+form {
+  background-color: $secondary-color;
+  padding: 2rem;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: $max-width;
+  width: 100%;
+}
+
+// Form group styling
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  label {
+    color: $font-color;
+    font-size: 0.9rem;
+  }
+
+  input[type="email"],
+  input[type="text"],
+  input[type="password"] {
+    background-color: $input-background;
+    border: 1px solid $input-border;
+    border-radius: $border-radius;
+    padding: $padding;
+    font-size: 1rem;
+    color: $font-color;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+}
+
+// Gender field styling
+.gender-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 1rem;
+    color: $font-color;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input[type="radio"] {
+      accent-color: $primary-color;
+    }
+  }
+}
+
+// Button styling
+.signup-container {
+  form {
+    button {
+      background-color: $primary-color;
+      color: $secondary-color;
+      border: none;
+      padding: $padding;
+      font-size: 1rem;
+      margin-top: 10px;
+      width: 100%;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $button-hover;
+      }
+    }
+    button[type="submit"] {
+      background-color: $primary-color;
+      color: $secondary-color;
+      margin-top: 20px;
+      &:hover {
+        background-color: $button-hover;
+      }
+    }
+    button[type="button"] {
+      background-color: gray;
+      color: $secondary-color;
+      margin-top: 10px;
+      &:hover {
+        background-color: rgb(89, 89, 89);
+      }
+    }
+  }
+}
+
+// Media query for mobile responsiveness
+@media (max-width: 480px) {
+  form {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

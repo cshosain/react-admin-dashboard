@@ -1,0 +1,68 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Set minimum height for full viewport */
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  padding: 2rem;
+  border-radius: 5px; /* Add subtle border radius */
+  font-family: sans-serif;
+}
+
+.login h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px; /* Limit form width for responsiveness */
+}
+
+.login form p {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: #4c4b4b; /* Light text color for labels */
+}
+
+.login form input {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+.login form button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login form button[type="submit"] {
+  background-color: #333; /* Dark button color */
+  color: #fff; /* White button text */
+}
+.login form button[type="button"] {
+  background-color: #4c9341; /* Dark button color */
+  color: #fff; /* White button text */
+}
+
+.login form button[type="submit"]:hover {
+  background-color: #222; /* Darker shade on hover */
+}
+.login form button[type="button"]:hover {
+  background-color: #315724; /* Darker shade on hover */
+}
+#notAccount {
+  margin-top: 13px;
+}
+#notAccount span {
+  text-decoration: underline;
+  color: #014f69;
+  cursor: pointer;
+}
