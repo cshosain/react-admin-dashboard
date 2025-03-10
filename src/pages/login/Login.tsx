@@ -5,85 +5,69 @@ import { setAuthenticationHeader } from "../../utilities/authenticationHeader";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
-  const nevigate = useNavigate();
-  const handleChange = (e: { target: { name: any; value: string } }) => {
-    setCredentials({
-      ...credentials,
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCredentials((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
-  };
-  const handleForm = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    //post username n password for login authentication
-    axios
-      .post("http://localhost:3000/login", {
-        username: credentials.username,
-        password: credentials.password,
-      })
-      .then((result) => {
-        if (result.data.success) {
-          const token = result.data.token;
-          localStorage.setItem("jsonwebtoken", token);
-          //set default auth. header
-          setAuthenticationHeader(token);
-          nevigate("/");
-        } else {
-          console.log(result.data.message);
-          alert(result.data.message);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }));
+    setErrorMsg(""); // Reset error message on input change
   };
 
-  /*const handleShowUser = () => {
-    //show a user by username when only have authentication token
-    axios
-      .get(`http://localhost:3000/dashboard/${credentials.username}`)
-      .then((result) => {
-        console.log(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };*/
+  const handleFormSubmission = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMsg(""); // Clear previous errors
+
+    try {
+      const { data } = await axios.post("http://localhost:3000/login", credentials);
+
+      if (data.success) {
+        localStorage.setItem("jsonwebtoken", data.token);
+        setAuthenticationHeader(data.token);
+        navigate("/");
+      } else {
+        setErrorMsg("Wrong crerdentials!");
+      }
+    } catch (error) {
+      setErrorMsg("Something went wrong. Please try again.");
+      console.error("Login error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="login">
       <h1>Admin Login</h1>
 
-      <form onSubmit={handleForm}>
+      <form onSubmit={handleFormSubmission}>
         <p>Username</p>
-        <input
-          type="text"
-          onChange={handleChange}
-          name="username"
-          id="username"
-        />
+        <input type="text" onChange={handleInputChange} name="username" id="username" required />
+
         <p>Password</p>
-        <input
-          type="password"
-          onChange={handleChange}
-          name="password"
-          id="password"
-        />
-        <button id="submit" type="submit">
-          Login
+        <input type="password" onChange={handleInputChange} name="password" id="password" required />
+
+        {errorMsg && <p id="errorMsg">{errorMsg}</p>}
+
+        <button id="submit" type="submit" disabled={isLoading}>
+          {isLoading ? "Logging in..." : "Login"}
         </button>
+
         <p id="notAccount">
-          Not have an account?{" "}
-          <span onClick={() => nevigate("/signup")}>Sign Up Here</span>
+          Not have an account? <span onClick={() => navigate("/signup")}>Sign Up Here</span>
         </p>
-        {/* <button id="signup" onClick={() => nevigate("/signup")} type="button">
-          Signup
-        </button> */}
       </form>
     </div>
   );
 };
+
 export default Login;
