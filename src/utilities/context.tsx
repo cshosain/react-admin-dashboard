@@ -10,7 +10,7 @@ interface MyContextValue {
 }
 export const ThemeContext = createContext<MyContextValue>({
   theme: "",
-  handleSetScreen: () => {},
+  handleSetScreen: () => { },
 });
 const ThemeProvider = (props: Props) => {
   const { setItem, getItem } = useLocalStorage("screen");

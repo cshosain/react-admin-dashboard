@@ -79,8 +79,9 @@ const Signup: React.FC = () => {
     async (field: string, value: string) => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/check-${field}/${value}`
+          `http://localhost:3000/api/admin/check-${field}/${value}`
         );
+        console.log(value)
         setAvailability((prev) => ({
           ...prev,
           [field]: !response.data.exists,
@@ -148,7 +149,7 @@ const Signup: React.FC = () => {
   //function for autometic login after signup
   const login = async (credentials: Credentials) => {
     try {
-      const { data } = await axios.post("http://localhost:3000/login", credentials);
+      const { data } = await axios.post("http://localhost:3000/api/admin/login", credentials);
 
       localStorage.setItem("jsonwebtoken", data.token);
       setAuthenticationHeader(data.token);
@@ -166,11 +167,12 @@ const Signup: React.FC = () => {
     if (!isErrors) {
       try {
         console.log(formData)
-        await axios.post("http://localhost:3000/signup", formData);
+        await axios.post("http://localhost:3000/api/admin/signup", formData);
         alert("Signup successful!");
         //autometic login after successfully signup
         login({ username: formData.username, password: formData.password })
       } catch (error) {
+        console.error("Signup error:", error);
         alert("An error occurred during signup.");
       }
     } else {

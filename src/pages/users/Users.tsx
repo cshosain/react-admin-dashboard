@@ -5,9 +5,10 @@ import { userRows } from "../../data";
 import { useContext, useState } from "react";
 import Add from "../../components/add/Add";
 import { ThemeContext } from "../../utilities/context";
+import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90, type: "number" },
+  { field: "_id", headerName: "ID", width: 90, type: "number" },
   {
     field: "img",
     headerName: "Avatar",
@@ -85,6 +86,15 @@ const Users = () => {
   const [open, setOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
 
+  const { isPending, error, data } = useQuery({
+    queryKey: ['allusers'],
+    queryFn: () =>
+      fetch('http://localhost:3000/api/user').then((res) =>
+        res.json(),
+      ),
+  })
+  console.log(data?.data)
+
   return (
     <div className="users">
       <div className="info">
@@ -99,8 +109,10 @@ const Users = () => {
           Add New User
         </button>
       </div>
-      <DataTable slug="users" rows={userRows} columns={columns} />
-      {open && <Add slug="user" columns={columns} setOpen={setOpen} />}
+      {isPending && <h1>Loading...</h1>}
+      {error?.message && <p>{error.message}</p>}
+      <DataTable slug="users" rows={data?.data} columns={columns} />
+      {open && <Add open={open} slug="user" columns={columns} setOpen={setOpen} />}
     </div>
   );
 };

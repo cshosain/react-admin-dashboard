@@ -16,6 +16,7 @@ a {
   font-family: "Inter", sans-serif;
   // background-color: $main-bg;
   color: $main-color;
+  overflow-x: hidden;
 }
 .container {
   display: flex;
@@ -29,5 +30,10 @@ a {
   // border-right: 2px solid $soft-bg;
   @include lg {
     width: max-content;
+  }
+}
+.container {
+  .outletContainer {
+    max-width: 92%;
   }
 }

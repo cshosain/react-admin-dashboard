@@ -90,8 +90,8 @@ const Single = (props: Props) => {
                       theme === "dark"
                         ? dataKey.color
                         : dataKey.name === "visits"
-                        ? "#002c58"
-                        : "#00b31b"
+                          ? "#002c58"
+                          : "#00b31b"
                     }
                   />
                 ))}
@@ -105,7 +105,7 @@ const Single = (props: Props) => {
         {props.activities && (
           <ul>
             {props.activities.map((activity) => (
-              <li key={activity.text}>
+              <li key={activity.text + activity.time}>
                 <div
                   style={{
                     backgroundColor:

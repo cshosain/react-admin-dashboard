@@ -22,6 +22,8 @@ import Orders from "./pages/orders/Orders";
 import { ThemeContext } from "./utilities/context";
 import { useContext } from "react";
 import Signup from "./pages/signup/Signup";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient()
 
 function SubAppn() {
   const { theme } = useContext(ThemeContext);
@@ -47,7 +49,10 @@ function SubAppn() {
             <Menu />
           </div>
           <div className="outletContainer" style={{ width: "100%" }}>
-            <Outlet />
+            <QueryClientProvider client={queryClient}>
+
+              <Outlet />
+            </QueryClientProvider>
           </div>
         </div>
         <Footer />
