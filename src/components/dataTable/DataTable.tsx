@@ -7,17 +7,43 @@ import {
   GridToolbar,
 } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+
+type SingleRow = {
+  _id: number;
+  img: string;
+  lastName: string;
+  firstName: string;
+  email: string;
+  phone: string;
+  createdAt: string;
+  verified: boolean;
+}
 
 type Props = {
-  rows: object[];
-  columns: GridColDef<object[][number]>[];
+  rows: SingleRow[];
+  columns: GridColDef<SingleRow>[]
   slug: string;
 };
 
 const DataTable = (props: Props) => {
+  const queryClient = useQueryClient()
+
+  const formatedSlug = props.slug === "user" ? "generalUser" : "shoes";
+
+  const mutation = useMutation({
+    mutationFn: (id: number) => {
+      return axios.delete(`http://localhost:3000/api/${formatedSlug}/${id}`)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`all${props.slug}`] })
+    }
+  })
+
   function handleDelete(id: number) {
     //delete api call
-    console.log(id + " To be delete");
+    mutation.mutate(id)
   }
 
   const actionColumn = {
@@ -27,10 +53,10 @@ const DataTable = (props: Props) => {
     renderCell: (params: GridRenderCellParams<any, Date>) => {
       return (
         <div className="action">
-          <Link to={`/${props.slug}/${params.row.id}`}>
+          <Link to={`/${props.slug}/${params.row._id}`}>
             <img src="/view.svg" alt="" />
           </Link>
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
+          <div className="delete" onClick={() => handleDelete(params.row._id)}>
             <img src="/delete.svg" alt="" />
           </div>
         </div>
@@ -41,10 +67,11 @@ const DataTable = (props: Props) => {
   return (
     <div className="dataTable">
       <Box sx={{ height: "auto", width: "100%" }}>
-        <DataGrid
+        <DataGrid<SingleRow>
           className="dataGrid"
           rows={props.rows}
-          columns={[...props.columns, actionColumn]}
+          getRowId={(row) => row?._id || Date.now()}
+          columns={[...props.columns,]}
           initialState={{
             pagination: {
               paginationModel: {
