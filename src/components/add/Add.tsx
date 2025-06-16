@@ -71,7 +71,7 @@ const Add = ({ slug, columns, setOpen, open, operation, id, productToBeUpdate }:
           }
         ),
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [`all${slug}s`] });
+        queryClient.invalidateQueries({ queryKey: [`all${slug}`] });
       },
     });
 
@@ -90,7 +90,7 @@ const Add = ({ slug, columns, setOpen, open, operation, id, productToBeUpdate }:
           }
         ),
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [`all${slug}s`] });
+        queryClient.invalidateQueries({ queryKey: [`all${slug}`] });
       },
     });
   }
@@ -136,6 +136,7 @@ const Add = ({ slug, columns, setOpen, open, operation, id, productToBeUpdate }:
                   item.field !== "action" &&
                   item.field !== "ratings" &&
                   item.field !== "reviews" &&
+                  item.field !== "orders" &&
                   item.field !== "availableSizes" &&
                   item.field !== "availableColors"
                 )

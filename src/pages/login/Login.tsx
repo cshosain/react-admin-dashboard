@@ -28,7 +28,7 @@ const Login = () => {
     setErrorMsg(""); // Clear previous errors
 
     try {
-      const { data } = await axios.post("http://localhost:3000/api/login", credentials);
+      const { data } = await axios.post("http://localhost:3000/api/admin/login", credentials);
 
       if (data.success) {
         localStorage.setItem("jsonwebtoken", data.token);

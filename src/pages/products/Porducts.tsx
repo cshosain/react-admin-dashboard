@@ -27,12 +27,18 @@ const Products = () => {
   const [productToBeUpdate, setProductToBeUpdate] = useState<ProductToBeUpdate | null>(null);
   const { theme } = useContext(ThemeContext);
   const queryClient = useQueryClient();
+  const token = localStorage.getItem("jsonwebtoken");
   const mutation = useMutation({
     mutationFn: (id: number) => {
-      return axios.delete(`http://localhost:3000/api/products/${id}`)
+      return axios.delete(`http://localhost:3000/api/shoes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`allusers`] })
+      queryClient.invalidateQueries({ queryKey: [`allshoes`] })
     }
   })
   function handleDelete(id: number) {
@@ -148,7 +154,7 @@ const Products = () => {
   ];
 
   const { isPending, error, data } = useQuery({
-    queryKey: ['allproducts'],
+    queryKey: ['allshoes'],
     queryFn: () =>
       fetch('http://localhost:3000/api/shoes').then((res) =>
         res.json(),

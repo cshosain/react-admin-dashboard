@@ -1,10 +1,10 @@
 import { GridColDef } from "@mui/x-data-grid";
 import DataTable from "../../components/dataTable/DataTable";
 import "./user.scss";
-import { userRows } from "../../data";
-import { useContext, useState } from "react";
-import Add from "../../components/add/Add";
-import { ThemeContext } from "../../utilities/context";
+// import { userRows } from "../../data";
+// import { useContext, useState } from "react";
+// import Add from "../../components/add/Add";
+// import { ThemeContext } from "../../utilities/context";
 import { useQuery } from "@tanstack/react-query";
 
 const columns: GridColDef[] = [
@@ -18,9 +18,30 @@ const columns: GridColDef[] = [
     },
   },
   {
-    field: "verified",
+    field: "is_active",
     headerName: "Status",
     width: 100,
+    type: "boolean",
+  },
+  {
+    field: "orders",
+    headerName: "Orders",
+    renderCell: (params) => {
+      return (
+        <div className="orders">
+          {params.row.orders?.length > 0 ? (
+            params.row.orders.map((order: any) => (
+              <span key={order._id} className="order">
+                {order._id}
+              </span>
+            ))
+          ) : (
+            <span className="no-orders">No Orders</span>
+          )}
+        </div>
+      )
+    },
+    width: 200,
     type: "boolean",
   },
   // {
@@ -77,14 +98,14 @@ const columns: GridColDef[] = [
     field: "createdAt",
     headerName: "createdAt",
     type: "string",
-    width: 110,
+    width: 160,
     editable: true,
   },
 ];
 
 const Users = () => {
-  const [open, setOpen] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  // const [open, setOpen] = useState(false);
+  // const { theme } = useContext(ThemeContext);
 
   const { isPending, error, data } = useQuery({
     queryKey: ['allusers'],
@@ -99,7 +120,7 @@ const Users = () => {
     <div className="users">
       <div className="info">
         <h1>Users</h1>
-        <button
+        {/* <button
           className={
             theme === "light" ? "new-user-btn-light" : "new-user-btn-dark"
           }
@@ -107,12 +128,12 @@ const Users = () => {
           onClick={() => setOpen(true)}
         >
           Add New User
-        </button>
+        </button> */}
       </div>
       {isPending && <h1>Loading...</h1>}
       {error?.message && <p>{error.message}</p>}
-      <DataTable slug="users" rows={data?.data} columns={columns} />
-      {open && <Add open={open} slug="user" columns={columns} setOpen={setOpen} />}
+      <DataTable slug="users" rows={data?.data} columns={columns.filter((item) => (item.field !== "firstName" && item.field !== "lastName"))} />
+      {/* {open && <Add open={open} slug="user" columns={columns} setOpen={setOpen} />} */}
     </div>
   );
 };
