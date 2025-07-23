@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { products } from "../../data";
 import "./products.scss";
 import { ThemeContext } from "../../utilities/context";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";

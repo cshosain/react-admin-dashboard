@@ -10,8 +10,6 @@ import "./styles/global.scss";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
   Outlet,
   Navigate,
 } from "react-router-dom";
