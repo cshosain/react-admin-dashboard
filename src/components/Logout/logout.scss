@@ -1,3 +1,4 @@
+@import "../../styles/responsive.scss";
 .logout {
   display: flex;
   justify-content: right;
@@ -6,9 +7,18 @@
   width: 20vw;
   // border: 1px solid gray;
   position: absolute;
-  top: 4%;
+  top: 15%;
   right: 2vw;
   z-index: 10;
+  @include xxl {
+    top: 23%;
+  }
+  @include xl {
+    top: 44%;
+  }
+  @include sm {
+    top: 66%;
+  }
   .internal {
     height: 79px;
     border-radius: 5px;
