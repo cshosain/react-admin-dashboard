@@ -167,7 +167,7 @@ const Add = ({ slug, columns, setOpen, open, operation, id, productToBeUpdate }:
                       formData.availableSizes ??
                       (productToBeUpdate?.availableSizes ?? [])
                     }
-                    onChange={(e, value) => {
+                    onChange={(_e, value) => {
                       setFormData((prev) => ({
                         ...prev,
                         availableSizes: value
@@ -190,7 +190,7 @@ const Add = ({ slug, columns, setOpen, open, operation, id, productToBeUpdate }:
                       formData.availableColors ??
                       (productToBeUpdate?.availableColors ?? [])
                     }
-                    onChange={(e, value) => {
+                    onChange={(_e, value) => {
                       setFormData((prev) => ({
                         ...prev,
                         availableColors: value

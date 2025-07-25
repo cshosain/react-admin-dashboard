@@ -79,7 +79,7 @@ const columns: GridColDef[] = [
     type: "string",
     sortable: false,
     width: 160,
-    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+    valueGetter: (_value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
   },
   {
     field: "email",

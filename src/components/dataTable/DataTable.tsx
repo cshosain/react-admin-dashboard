@@ -3,12 +3,12 @@ import "./dataTable.scss";
 import {
   DataGrid,
   GridColDef,
-  GridRenderCellParams,
+  // GridRenderCellParams,
   GridToolbar,
 } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+// import { Link } from "react-router-dom";
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import axios from "axios";
 
 type SingleRow = {
   _id: number;
@@ -28,41 +28,41 @@ type Props = {
 };
 
 const DataTable = (props: Props) => {
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
 
-  const formatedSlug = props.slug === "user" ? "generalUser" : "shoes";
+  // const formatedSlug = props.slug === "user" ? "generalUser" : "shoes";
 
-  const mutation = useMutation({
-    mutationFn: (id: number) => {
-      return axios.delete(`http://localhost:3000/api/${formatedSlug}/${id}`)
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`all${props.slug}`] })
-    }
-  })
+  // const mutation = useMutation({
+  //   mutationFn: (id: number) => {
+  //     return axios.delete(`http://localhost:3000/api/${formatedSlug}/${id}`)
+  //   },
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: [`all${props.slug}`] })
+  //   }
+  // })
 
-  function handleDelete(id: number) {
-    //delete api call
-    mutation.mutate(id)
-  }
+  // function handleDelete(id: number) {
+  //   //delete api call
+  //   mutation.mutate(id)
+  // }
 
-  const actionColumn = {
-    field: "action",
-    headerName: "Action",
-    width: 150,
-    renderCell: (params: GridRenderCellParams<any, Date>) => {
-      return (
-        <div className="action">
-          <Link to={`/${props.slug}/${params.row._id}`}>
-            <img src="/view.svg" alt="" />
-          </Link>
-          <div className="delete" onClick={() => handleDelete(params.row._id)}>
-            <img src="/delete.svg" alt="" />
-          </div>
-        </div>
-      );
-    },
-  };
+  // const actionColumn = {
+  //   field: "action",
+  //   headerName: "Action",
+  //   width: 150,
+  //   renderCell: (params: GridRenderCellParams<any, Date>) => {
+  //     return (
+  //       <div className="action">
+  //         <Link to={`/${props.slug}/${params.row._id}`}>
+  //           <img src="/view.svg" alt="" />
+  //         </Link>
+  //         <div className="delete" onClick={() => handleDelete(params.row._id)}>
+  //           <img src="/delete.svg" alt="" />
+  //         </div>
+  //       </div>
+  //     );
+  //   },
+  // };
 
   return (
     <div className="dataTable">

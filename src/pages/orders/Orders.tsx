@@ -1,7 +1,6 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import DataTable from "../../components/dataTable/DataTable";
-import { GridColDef, GridRowParams } from "@mui/x-data-grid";
-import { ThemeContext } from "../../utilities/context";
+import { GridColDef } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 import OrderDetailsPopup from "../../components/orderDetailsPopup/OrderDetailsPopup.tsx";
 import axios from "axios";
@@ -20,7 +19,6 @@ const statusOptions = [
 const Orders = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<any>(null);
-  const { theme } = useContext(ThemeContext);
 
   const columns: GridColDef[] = [
     { field: "_id", headerName: "Order ID", width: 180 },
