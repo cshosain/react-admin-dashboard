@@ -12,12 +12,8 @@ import {
 import BarChartBox from "../../components/barChartBox/BarChartBox.tsx";
 import PieChartBox from "../../components/pieChart/PieChartBox.tsx";
 import BigChartBox from "../../components/bigChartBox/BigChartBox.tsx";
-import { useContext } from "react";
-import { ThemeContext } from "../../utilities/context.tsx";
 
 const Home = () => {
-  const { theme } = useContext(ThemeContext);
-  console.log(theme);
   return (
     <div className="home">
       <div

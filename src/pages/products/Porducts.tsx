@@ -7,6 +7,7 @@ import { ThemeContext } from "../../utilities/context";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 type ProductToBeUpdate = {
   img?: string;
   title?: string;
@@ -29,7 +30,7 @@ const Products = () => {
   const token = localStorage.getItem("jsonwebtoken");
   const mutation = useMutation({
     mutationFn: (id: number) => {
-      return axios.delete(`http://localhost:3000/api/shoes/${id}`, {
+      return axios.delete(`${BASE_URL}/api/shoes/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -155,7 +156,7 @@ const Products = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ['allshoes'],
     queryFn: () =>
-      fetch('http://localhost:3000/api/shoes').then((res) =>
+      fetch(`${BASE_URL}/api/shoes`).then((res) =>
         res.json(),
       ),
   })

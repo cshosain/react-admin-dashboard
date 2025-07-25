@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import OrderDetailsPopup from "../../components/orderDetailsPopup/OrderDetailsPopup.tsx";
 import axios from "axios";
 import "./orders.scss";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const statusOptions = [
   "Pending",
@@ -111,7 +112,7 @@ const Orders = () => {
     queryKey: ["allorders"],
     queryFn: async () => {
       const token = localStorage.getItem("jsonwebtoken");
-      const res = await fetch("http://localhost:3000/api/admin/orders", {
+      const res = await fetch(`${BASE_URL}/api/admin/orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -124,7 +125,7 @@ const Orders = () => {
   const handleStatusUpdate = async (orderId: string, newStatus: string) => {
     const token = localStorage.getItem("jsonwebtoken");
     await axios.put(
-      `http://localhost:3000/api/admin/orders/status/${orderId}`,
+      `${BASE_URL}/api/admin/orders/status/${orderId}`,
       { status: newStatus },
       {
         headers: {

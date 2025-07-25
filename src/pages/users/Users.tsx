@@ -6,6 +6,7 @@ import "./user.scss";
 // import Add from "../../components/add/Add";
 // import { ThemeContext } from "../../utilities/context";
 import { useQuery } from "@tanstack/react-query";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const columns: GridColDef[] = [
   { field: "_id", headerName: "ID", width: 90, type: "number" },
@@ -110,7 +111,7 @@ const Users = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ['allusers'],
     queryFn: () =>
-      fetch('http://localhost:3000/api/user').then((res) =>
+      fetch(`${BASE_URL}/api/user`).then((res) =>
         res.json(),
       ),
   })

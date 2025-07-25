@@ -3,6 +3,7 @@ import axios from "axios";
 import "./login.scss";
 import { setAuthenticationHeader } from "../../utilities/authenticationHeader";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Login = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -28,7 +29,7 @@ const Login = () => {
     setErrorMsg(""); // Clear previous errors
 
     try {
-      const { data } = await axios.post("http://localhost:3000/api/admin/login", credentials);
+      const { data } = await axios.post(`${BASE_URL}/api/admin/login`, credentials);
 
       if (data.success) {
         localStorage.setItem("jsonwebtoken", data.token);
