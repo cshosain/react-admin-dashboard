@@ -33,6 +33,7 @@ const Login = () => {
 
       if (data.success) {
         localStorage.setItem("jsonwebtoken", data.token);
+        localStorage.setItem("adminUser", JSON.stringify(data.adminUser));
         setAuthenticationHeader(data.token);
         navigate("/");
       } else {

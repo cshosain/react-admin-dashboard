@@ -1,14 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./navbar.scss";
 import { ThemeContext } from "../../utilities/context";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import useLocalStorage from "../../utilities/useLocalStorage";
 import Logout from "../Logout/Logout";
 
+type AdminUser = {
+  avatar: object;
+  avatarUrl?: string;
+  firstName: string;
+
+  // add other properties if needed
+};
 const Navbar = () => {
   const { theme, handleSetScreen } = useContext(ThemeContext);
   const [logoutBtn, setLogoutBtn] = useState(false);
   const { getItem } = useLocalStorage("screen");
+  const [admin, setAdmin] = useState<AdminUser | null>(null);
+  useEffect(() => {
+    //get adminUser from localStorage
+    const adminUser = localStorage.getItem("adminUser");
+    if (adminUser) {
+      setAdmin(JSON.parse(adminUser));
+    }
+  }, []);
 
   return (
     <div className="navbar">
@@ -55,19 +70,20 @@ const Navbar = () => {
           />
           <span>1</span>
         </div>
-        <div
-          onMouseMove={() => setLogoutBtn(true)}
-          onMouseLeave={() => setLogoutBtn(false)}
-          className="user"
-        >
-          <img
-            src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0="
-            alt=""
-          />
-          {logoutBtn && (
-            <Logout logoutBtn={logoutBtn} setLogoutBtn={setLogoutBtn} />
-          )}
-          <span>Has</span>
+        <div className="user">
+
+          <div className="profile" onClick={() => setLogoutBtn(!logoutBtn)} onMouseEnter={(e) => {
+            e.stopPropagation();
+            setLogoutBtn(true)
+          }}>
+            <img
+              src={admin ? admin.avatarUrl : ""} alt="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+            />
+            {logoutBtn && (
+              <Logout logoutBtn={logoutBtn} setLogoutBtn={setLogoutBtn} />
+            )}
+            <span>{admin ? admin.firstName : "HAS"}</span>
+          </div>
         </div>
         <img
           style={{ filter: theme === "light" ? "invert(1)" : "invert(0)" }}

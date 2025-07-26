@@ -21,6 +21,7 @@ import { ThemeContext } from "./utilities/context";
 import { useContext } from "react";
 import Signup from "./pages/signup/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Terms from "./pages/signup/Terms";
 const queryClient = new QueryClient()
 
 function SubAppn() {
@@ -111,6 +112,10 @@ function SubAppn() {
       path: "/signup",
       element: <Signup />,
     },
+    {
+      path: "signup/terms",
+      element: <Terms />,
+    }
   ]);
 
   return <RouterProvider router={router} />;
