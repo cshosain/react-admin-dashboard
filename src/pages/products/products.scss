@@ -1,4 +1,11 @@
+@import "../../styles/global.scss";
 .products {
+  h1 {
+    font-size: 24px;
+    @include sm {
+      font-size: 18px;
+    }
+  }
   .info {
     display: flex;
     gap: 20px;

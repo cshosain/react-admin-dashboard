@@ -1,11 +1,19 @@
+@import "../../styles/global.scss";
 .dataTable {
   .css-j9ad5u {
     height: auto;
-    /* width: 100%; */
+    @include sm {
+      width: 100%;
+    }
     width: 87%;
   }
   .dataGrid {
     background: white;
+    @include sm {
+      .css-1qb993p-MuiDataGrid-columnHeaderTitle {
+        font-size: 12px;
+      }
+    }
 
     .MuiDataGrid-toolbarContainer {
       flex-direction: row-reverse;
@@ -30,6 +38,12 @@
         width: 20px;
         cursor: pointer;
       }
+    }
+  }
+
+  .css-163fvz6-MuiDataGrid-root .MuiDataGrid-cell {
+    @include sm {
+      font-size: 12px;
     }
   }
 }

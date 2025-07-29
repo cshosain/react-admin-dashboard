@@ -7,6 +7,9 @@
     @include xxl {
       font-size: 24px;
     }
+    @include sm {
+      font-size: 18px;
+    }
   }
   .list {
     .listItem {
@@ -14,7 +17,11 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 30px;
-
+      span {
+        @include sm {
+          font-size: 12px;
+        }
+      }
       .user {
         display: flex;
         gap: 20px;
@@ -37,9 +44,15 @@
           .username {
             font-size: 14px;
             font-weight: 500;
+            @include sm {
+              font-size: 12px;
+            }
           }
           .email {
             font-size: 12px;
+            @include sm {
+              font-size: 11px;
+            }
             @include xxl {
               display: none;
             }

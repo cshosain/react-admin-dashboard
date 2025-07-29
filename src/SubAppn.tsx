@@ -18,7 +18,7 @@ import User from "./pages/user/User";
 import Posts from "./pages/posts/Posts";
 import Orders from "./pages/orders/Orders";
 import { ThemeContext } from "./utilities/context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Signup from "./pages/signup/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Terms from "./pages/signup/Terms";
@@ -26,8 +26,8 @@ const queryClient = new QueryClient()
 
 function SubAppn() {
   const { theme } = useContext(ThemeContext);
+  const [showMenu, setShowMenu] = useState(false);
   const Layout = () => {
-    console.log(theme);
     return (
       <div
         style={{
@@ -43,14 +43,24 @@ function SubAppn() {
         <Navbar />
         <div className="container">
           <div
-            style={{ borderRight: theme !== "light" ? "#384256" : "#d1def8" }}
-            className="menuContainer"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowMenu(prev => !prev);
+            }}
+            className={`hamburger-menu${showMenu ? " open" : ""}${theme === "light" ? " ham-light" : " ham-dark"}`}
           >
-            <Menu />
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div
+            className={`menuContainer${showMenu ? " open" : ""}${theme === "light" ? " menu-light" : " menu-dark"}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Menu setShowMenu={setShowMenu} />
           </div>
           <div className="outletContainer" style={{ width: "100%" }}>
             <QueryClientProvider client={queryClient}>
-
               <Outlet />
             </QueryClientProvider>
           </div>

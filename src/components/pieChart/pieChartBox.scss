@@ -1,3 +1,5 @@
+@import "../../styles/global.scss";
+
 .pieChart {
   height: 100%;
   display: flex;
@@ -16,6 +18,9 @@
     justify-content: space-between;
     gap: 10px;
     font-size: 14px;
+    @include sm {
+      font-size: 11px;
+    }
 
     .option {
       display: flex;

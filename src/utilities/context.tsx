@@ -21,7 +21,7 @@ const ThemeProvider = (props: Props) => {
     const currentTheme = getItem();
     setTheme(currentTheme);
     console.log(currentTheme);
-  }, [getItem]);
+  }, [theme]);
 
   function handleSetScreen(currentItem: string) {
     if (currentItem === "dark") {

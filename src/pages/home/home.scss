@@ -24,6 +24,11 @@
     border-radius: 10px;
     // border: 1px solid $soft-bg;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include sm {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   .box-1 {
     grid-column: span 1;
@@ -35,6 +40,9 @@
     h1 {
       @include xxl {
         font-size: 24px;
+      }
+      @include sm {
+        font-size: 18px;
       }
     }
   }
@@ -51,6 +59,9 @@
       @include xxl {
         font-size: 24px;
       }
+      @include sm {
+        font-size: 18px;
+      }
     }
   }
   .box-8 {
@@ -58,12 +69,18 @@
       @include xxl {
         font-size: 24px;
       }
+      @include sm {
+        font-size: 18px;
+      }
     }
   }
   .box-9 {
     h1 {
       @include xxl {
         font-size: 24px;
+      }
+      @include sm {
+        font-size: 18px;
       }
     }
   }

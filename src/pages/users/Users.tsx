@@ -7,13 +7,14 @@ import "./user.scss";
 // import { ThemeContext } from "../../utilities/context";
 import { useQuery } from "@tanstack/react-query";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
+//get window width for one time;
+const windowWidth = window.innerWidth;
 const columns: GridColDef[] = [
   { field: "_id", headerName: "ID", width: 90, type: "number" },
   {
     field: "img",
     headerName: "Avatar",
-    width: 100,
+    width: windowWidth < 500 ? 75 : 100,
     renderCell: (params) => {
       return <img src={params.row.img || "/noavatar.png"} alt="" />;
     },
@@ -21,7 +22,7 @@ const columns: GridColDef[] = [
   {
     field: "is_active",
     headerName: "Status",
-    width: 100,
+    width: windowWidth < 500 ? 75 : 100,
     type: "boolean",
   },
   {
@@ -31,8 +32,8 @@ const columns: GridColDef[] = [
       return (
         <div className="orders">
           {params.row.orders?.length > 0 ? (
-            params.row.orders.map((order: any) => (
-              <span key={order._id} className="order">
+            params.row.orders.map((order: any, index: number) => (
+              <span key={order._id + index.toString()} className="order">
                 {order._id}
               </span>
             ))
@@ -42,7 +43,7 @@ const columns: GridColDef[] = [
         </div>
       )
     },
-    width: 200,
+    width: windowWidth < 500 ? 150 : 200,
     type: "boolean",
   },
   // {
@@ -62,14 +63,14 @@ const columns: GridColDef[] = [
     field: "firstName",
     headerName: "First name",
     type: "string",
-    width: 150,
+    width: windowWidth < 500 ? 100 : 150,
     editable: true,
   },
   {
     field: "lastName",
     headerName: "Last name",
     type: "string",
-    width: 150,
+    width: windowWidth < 500 ? 100 : 150,
     editable: true,
   },
   {
@@ -78,28 +79,28 @@ const columns: GridColDef[] = [
     description: "This column has a value getter and is not sortable.",
     type: "string",
     sortable: false,
-    width: 160,
+    width: windowWidth < 500 ? 105 : 160,
     valueGetter: (_value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
   },
   {
     field: "email",
     headerName: "Email",
     type: "string",
-    width: 200,
+    width: windowWidth < 500 ? 150 : 200,
     editable: true,
   },
   {
     field: "phone",
     headerName: "Phone",
     type: "string",
-    width: 200,
+    width: windowWidth < 500 ? 120 : 180,
     editable: true,
   },
   {
     field: "createdAt",
     headerName: "createdAt",
     type: "string",
-    width: 160,
+    width: windowWidth < 500 ? 100 : 150,
     editable: true,
   },
 ];
@@ -115,7 +116,6 @@ const Users = () => {
         res.json(),
       ),
   })
-  console.log(data?.data)
 
   return (
     <div className="users">

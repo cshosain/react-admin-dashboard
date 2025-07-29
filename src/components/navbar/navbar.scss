@@ -13,6 +13,11 @@
     align-items: center;
     font-weight: bold;
     gap: 10px;
+    @include md {
+      img {
+        opacity: 0;
+      }
+    }
   }
   .icons {
     display: flex;

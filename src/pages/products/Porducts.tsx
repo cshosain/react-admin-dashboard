@@ -183,7 +183,7 @@ const Products = () => {
           type="button"
           onClick={() => { setOpen(true); setOperation("add"); setId(null); setProductToBeUpdate(null); }}
         >
-          Add New product
+          Add New
         </button>
       </div>
       {isPending && <h1>Loading...</h1>}

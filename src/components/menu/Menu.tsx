@@ -4,7 +4,9 @@ import { menu } from "../../data";
 import { useContext } from "react";
 import { ThemeContext } from "../../utilities/context";
 
-const Menu = () => {
+// receive setShowMenu as a prop to control the menu visibility
+type Props = { setShowMenu: (showMenu: boolean) => void };
+const Menu = ({ setShowMenu }: Props) => {
   const { theme } = useContext(ThemeContext);
   // const [mouseEnter, setMouseEnter] = useState(false);
 
@@ -59,6 +61,7 @@ const Menu = () => {
                 }}
                 src={"/" + listItem.icon}
                 alt=""
+                onClick={() => setShowMenu(false)}
               />
               <span className="listItemTitle">{listItem.title}</span>
             </Link>

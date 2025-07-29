@@ -1,6 +1,8 @@
 .footer {
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  background-color: gray;
 
   &:first-child {
     font-weight: bold;
