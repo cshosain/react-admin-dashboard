@@ -293,7 +293,7 @@ form .signup-fieldset .form-row .gender-field {
     gap: 0.5rem;
   }
   form {
-    padding: 0.7rem 0.3rem;
+    padding: 1rem;
   }
   .signup-container h2 {
     font-size: 1.1rem;
@@ -375,9 +375,9 @@ form .signup-fieldset .form-row .gender-field {
   button,
   button[type="submit"],
   .secondary-btn {
-    font-size: 1.08rem !important;
-    padding: 13px 0 !important;
-    border-radius: 28px !important;
+    font-size: 1.08rem;
+    padding: 13px 0;
+    border-radius: 28px;
   }
 
   .error,

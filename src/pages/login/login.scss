@@ -1,3 +1,4 @@
+@import "../../styles/global.scss";
 .login {
   display: flex;
   flex-direction: column;
@@ -8,44 +9,103 @@
   padding: 2rem;
   border-radius: 5px; /* Add subtle border radius */
   font-family: sans-serif;
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px; /* Limit the width of the login container */
+    background-color: #235; /* White background for contrast */
+    padding: 4rem;
+    border-radius: 10px; /* Rounded corners for the container */
+    // box-shadow: 0px 0px 16px 4px #0e1625; /* Subtle shadow for depth */
+    @include sm {
+      padding: 2rem; /* Adjust padding for smaller screens */
+    }
+    hr {
+      width: 90%;
+      margin-top: 1rem;
+      height: 1px solid;
+      border: 1px solid gainsboro;
+    }
+    img {
+      width: 70px; /* Adjust size as needed */
+      height: 70px; /* Adjust size as needed */
+      margin-bottom: 1rem; /* Space between image and title */
+    }
+  }
 }
 
-.login h1 {
-  margin-bottom: 2rem;
+.login div h1 {
   font-size: 2rem;
   font-weight: bold;
+  text-align: center;
+  color: #fffc70;
+  @include md {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+  @include sm {
+    font-size: 18px; /* Adjust font size for smaller screens */
+  }
 }
 
 .login form {
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 300px; /* Limit form width for responsiveness */
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: none;
 }
 
 .login form p {
   margin-bottom: 0.5rem;
-  font-size: 0.8rem;
-  color: #4c4b4b; /* Light text color for labels */
+  font-size: 1.3rem;
+  color: #fffc70; /* Light text color for labels */
+  @include md {
+    font-size: 1.2rem; /* Adjust font size for smaller screens */
+  }
+  @include sm {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    margin-bottom: 0;
+  }
 }
 
 .login form input {
   padding: 1rem;
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 31px;
   margin-bottom: 1rem;
+  font-size: large;
+  @include sm {
+    padding: 0.7rem;
+    font-size: small;
+  }
+  &:focus {
+    outline: none;
+    border-color: #ffd84b; /* Highlight border on focus */
+  }
 }
 .login form button {
-  padding: 1rem 2rem;
+  padding: 1.2rem 2rem;
   border: none;
-  border-radius: 3px;
+  border-radius: 30px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+
   transition: background-color 0.2s ease;
+  @include sm {
+    padding: 0.7rem 1.5rem;
+    font-size: 12px;
+  }
 }
 
 .login form button[type="submit"] {
-  background-color: #333; /* Dark button color */
-  color: #fff; /* White button text */
+  background-color: #ffd84b;
+  color: #235;
 }
 .login form button[type="button"] {
   background-color: #4c9341; /* Dark button color */
@@ -53,7 +113,7 @@
 }
 
 .login form button[type="submit"]:hover {
-  background-color: #222; /* Darker shade on hover */
+  background-color: #b19531; /* Darker shade on hover */
 }
 .login form button[type="button"]:hover {
   background-color: #315724; /* Darker shade on hover */
@@ -63,7 +123,7 @@
 }
 #notAccount span {
   text-decoration: underline;
-  color: #014f69;
+  color: #6eceee;
   cursor: pointer;
 }
 #errorMsg {

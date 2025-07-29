@@ -3,6 +3,7 @@ import axios from "axios";
 import "./login.scss";
 import { setAuthenticationHeader } from "../../utilities/authenticationHeader";
 import { useNavigate } from "react-router-dom";
+import keySvg from "../../assets/key-svg.svg" // Assuming you have a key SVG in your assets
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Login = () => {
@@ -49,25 +50,31 @@ const Login = () => {
 
   return (
     <div className="login">
-      <h1>Admin Login</h1>
+      <div className="login-container">
+        {/* key svg */}
+        <img src={keySvg} alt="" />
+        <h1>Admin</h1>
+        <hr />
 
-      <form onSubmit={handleFormSubmission}>
-        <p>Username</p>
-        <input type="text" onChange={handleInputChange} name="username" id="username" required />
+        <form onSubmit={handleFormSubmission}>
+          <p>Username</p>
+          <input type="text" onChange={handleInputChange} name="username" id="username" required />
 
-        <p>Password</p>
-        <input type="password" onChange={handleInputChange} name="password" id="password" required />
+          <p>Password</p>
+          <input type="password" onChange={handleInputChange} name="password" id="password" required />
 
-        {errorMsg && <p id="errorMsg">{errorMsg}</p>}
+          {errorMsg && <p id="errorMsg">{errorMsg}</p>}
 
-        <button id="submit" type="submit" disabled={isLoading}>
-          {isLoading ? "Logging in..." : "Login"}
-        </button>
+          <button id="submit" type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
 
-        <p id="notAccount">
-          Not have an account? <span onClick={() => navigate("/signup")}>Sign Up Here</span>
-        </p>
-      </form>
+          <p id="notAccount">
+            Not have an account? <span onClick={() => navigate("/signup")}>Sign Up Here</span>
+          </p>
+        </form>
+      </div>
+
     </div>
   );
 };

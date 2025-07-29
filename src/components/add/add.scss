@@ -47,27 +47,34 @@
     }
     form {
       display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
-      width: 65vw;
+      width: 40vw;
       max-width: 500px;
       justify-content: space-between;
       background-color: transparent;
       box-shadow: none;
-      padding: 4vw;
+      // padding: 4vw;
+      gap: 0;
+      @include md {
+        width: 65vw;
+      }
       .item {
-        width: 40%;
+        width: 47%;
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-bottom: 20px;
+        @include xl {
+          margin-bottom: 10px;
+        }
         @include md {
           width: 45%;
           gap: 6px;
-          margin-bottom: 12px;
+          margin-bottom: 8px;
         }
         @include sm {
           gap: 0;
-          margin-bottom: 8px;
           width: 45%;
           padding: 0;
         }
@@ -80,14 +87,18 @@
       }
 
       input {
-        padding: 10px;
+        padding: 5px;
         background-color: transparent;
         color: wheat;
         outline: none;
         border: 1px solid $soft-color;
         border-radius: 3px;
+        @include md {
+          font-size: 13px;
+        }
         @include sm {
           font-size: 12px;
+          padding: 5px;
         }
       }
       button {
@@ -95,6 +106,7 @@
         padding: 10px;
         cursor: pointer;
         border: none;
+        border-radius: 7px;
       }
       button:hover {
         background-color: rgb(0, 102, 255);
@@ -106,6 +118,10 @@
         gap: 10px;
         width: 100%;
         -webkit-text-fill-color: white;
+        @include md {
+          margin-top: 8px;
+          margin-bottom: 8px;
+        }
       }
     }
   }
@@ -139,5 +155,10 @@
     h1 {
       color: #103456;
     }
+  }
+}
+.css-1x6bjyf-MuiAutocomplete-root .MuiAutocomplete-tag {
+  @include sm {
+    max-height: 23px;
   }
 }

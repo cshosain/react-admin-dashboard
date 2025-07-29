@@ -158,7 +158,7 @@ const Add = ({ slug, columns, setOpen, open, operation, id, productToBeUpdate }:
                 )}
               <div className="colors-sizes">
                 <div className="item">
-                  <label htmlFor="availableSizes">Available Sizes</label>
+                  {/* <label htmlFor="availableSizes">Available Sizes</label> */}
                   <Autocomplete
                     multiple
                     freeSolo
@@ -181,7 +181,7 @@ const Add = ({ slug, columns, setOpen, open, operation, id, productToBeUpdate }:
                   />
                 </div>
                 <div className="item">
-                  <label htmlFor="availableColors">Available Colors</label>
+                  {/* <label htmlFor="availableColors">Available Colors</label> */}
                   <Autocomplete
                     multiple
                     freeSolo
